@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finding Data</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+         body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Finding Data
+
+---
+layout: false
+.left-column[
+## What is Data?
+
+]
+.right-column[
+**da·ta noun plural but singular or plural in construction, often attributive \ˈdā-tə, ˈda- also ˈdä-\**
+1. factual information (as measurements or statistics) used as a basis for reasoning, discussion, or calculation
+2.  information output by a sensing device or organ that includes both useful and irrelevant or redundant information and must be processed to be meaningful
+3.  information in numerical form 
+that can be digitally transmitted or processed
+
+>Merriam-Webster (http://www.merriam-webster.com/dictionary/data) 
+]
+---
+
+
+.left-column[
+## Data can be
+] 
+.right-column[
+* **Observational**: Captured in real-time, typically outside the lab
+  * Examples: Sensor readings, survey results, images, audio, video
+* **Experimental**: Typically generated in the lab or under controlled conditions
+  * Examples: test results
+* **Simulation**: Machine generated from test models
+  * Examples: climate models, economic models
+* **Derived /Compiled**: Generated from existing datasets
+  * Examples: text as data (data mining), compiled database, 3D models
+]
+---
+
+.left-column[
+## Data can be
+] 
+.right-column[
+* Text: field or laboratory notes, survey responses
+  * Numeric: tables, counts, measurements
+* Audiovisual: images, sound recordings, video
+  * Models, computer code, geospatial data
+* Discipline-specific: FITS in astronomy, CIF in chemistry
+* Instrument-specific: equipment outputs
+]
+---
+.left-column[
+## Microdata 
+]
+.right-column[
+* Data directly observed or collected from a specific unit of observation. 
+* Contain individual cases, usually individual people, or in the case of Census data, individuals & households   
+* Examples:
+  * Census: the unit of observation is probably an individual, a household or a family.
+  * Survey or poll: the responses of a single respondent
+![ACS Form](ACS-form.jpg)
+]
+---
+.left-column[
+## Aggregate or Summary Data
+]
+.right-column[
+* Is higher-level data that have been compiled from smaller units of data. 
+  * Examples: inflation rate, consumer price index, demographic data for city or state  
+
+![Right-aligned image](data-table.png)
+]
+---
+.left-column[
+##Datasets
+]
+.right-column[
+A dataset or study is made up of the raw data file and any related files, usually the codebook and setup files. 
+Most data sets require at least basic statistical analysis (Stata, SPSS, R, etc.) or spreadsheet programs (Excel) to use.
+]
+---
+.left-column[
+## Data Repositories 
+]
+.right-column[
+* A data repository is a collection of datasets that have been deposited for storage and findability.
+* They are often discipline specific and/or affiliated with a research institution
+
+Examples
+* ICPSR
+* Harvard Dataverse Network
+* UC San Diego Digital Collections
+]
+---
+.left-column[
+## Recap
+]
+.right-column[
+* Data are raw ingredients from which statistics are created. 
+* Statistical analysis can be performed on data to show relationships among the variables collected. 
+* Through secondary data analysis, many different researchers can re-use the same data set for different purposes.
+]
+---
+layout: true
+
+# Finding Datasets
+
+---
+layout: false
+
+.left-column[
+## Who would collect the data? 
+]
+.right-column[
+1. Could it have been collected by a government agency? 
+2. A nonprofit or nongovernmental organization?
+3. A private business or industry group?
+4. Academic researchers?
+]
+
+---
+.left-column[
+## Publications
+]
+.right-column[
+## Look for publications that use the kind of data you’re looking for and that cite the dataset
+
+* In other words, is the data you want mentioned in scholarly articles or government reports or some other source?
+  * ICPSR Publications Search - Database of publications that use ICPSR data. 
+]
+
+---
+.left-column[
+## Using Data 
+]
+.right-column[
+## How are you going to use the data? 
+* Preparing data for analysis is often 50-80% of work
+* Are you using a statistical software tool? 
+  - R, Stata, Python, Excel?
+  - Some repositories provide setup files & clean data for specific programs
+* What kind of statistical tests do you want to perform? 
+  -  Does the tool you want to use support the test?
+]
+---
+.left-column[
+## Identify Variables
+]
+[
+.right-column[
+## What aspects of your topic are you interested in? 
+* It's often helpful to think in terms of variables when looking for data.
+  * The effects of **educational attainment** on **income**.
+* Factoring in geography can also help 
+]
+---
+.left-column[
+##Find data
+]
+.right-column[
+## Once you know that what you want exists, it's time to hunt it down
+
+* Is it freely available on the web?
+* Or part of a package to which the library already subscribes?
+* Is it something we can buy? (And is it within the library's budget and can the purchase be made quickly enough to fit your timeframe?)
+* Can it be requested directly from the researcher?
+]
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+    <script src="remark.language.js"></script>
+     <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+  </body>
+</html>
