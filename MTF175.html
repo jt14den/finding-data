@@ -153,7 +153,7 @@ layout: false
 .right-column[
 * Package author (Ben Jann) wanted to provide a **clean desk** for users
 * Users will need to build up their table
-* *estout* was desicnged to make a plain, unformatted table containing only point estimates by default
+* *estout* was desinged to make a plain, unformatted table containing only point estimates by default
 
 ]
 ---
@@ -163,7 +163,7 @@ layout: false
 ] 
 .right-column[
 * not usually suitable for Stata's results window (uses tab character to separate table columns)
-* syntax not intuitive and user friendly (nested options, hard to remeber the copious options)
+* syntax not intuitive or user friendly (nested options, hard to remeber the copious options)
 * lots of typing required to compile a simple table (can use default files)
 * estout an expressive and complex tool, but might require a learning curve and be ornery to work with
 * easier wrapper to estout is **esttab** (we'll spend our time here today)
@@ -188,11 +188,17 @@ layout: false
 ]
 ---
 .left-column[
-##Datasets
+##Use eststo
 ]
 .right-column[
-A dataset or study is made up of the raw data file and any related files, usually the **codebook** and **setup files**. 
-Most data sets require at least basic statistical analysis (Stata, SPSS, R, etc.) or spreadsheet programs (Excel) to use.
+Create a regression from `auto` in Stata using both styles (after the command and as a prefix). Also, try naming the stored
+estimates and using tha way. After each eststo, use estout to print the table. (5min)
+
+```stata
+. sysuse auto
+. YOUR eststo cmds
+. estout, style(fixed)
+``
 ]
 ---
 .left-column[
