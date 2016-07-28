@@ -204,10 +204,10 @@ estimates and using tha way. After each `eststo`, use `estout` to print the tabl
 ]
 ---
 .left-column[
-## esttab 
+## `esttab` 
 ]
 .right-column[
-* wrapper for estout 
+* wrapper for `estout` 
 * simplier syntax 
 * tables look good in the Stata window
 * adds support for word rich-text format (RTF)
@@ -222,24 +222,26 @@ estimates and using tha way. After each `eststo`, use `estout` to print the tabl
 
 * *namelist*  - list of names of stored estimates sets (if omitted esttab will use active est)
 * can use \* as namelist to tabules all stored estimations sets 
-
+* specifying `using` causes the regression table to be written to a file on disk 
 ]
 ---
 layout: false
 
 .left-column[ 
-
+## Basic workflow
 ]
 .right-column[
 
+1. store serveral models with eststo
+2. apply `esttab` to these stored estimate sets and compose the table
 ]
 
 ---
 .left-column[
-
+Stata
 ]
 .right-column[
-
+Code. 
 ]
 
 ---
