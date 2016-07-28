@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Finding Data - UPS 125</title>
+    <title>MTF 175 - Stata ESTOUT</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -128,73 +128,63 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-# Finding Data
-.footnote[Adapted from Annelise Sklar's "[Finding Data & Statistics Powerpoint](http://ucsd.libguides.com/c.php?g=90871&p=586364)" ]
+# Table outputs in Stata
+
 ---
 layout: false
 .left-column[
-## What is Data?
+## estout
 
 ]
 .right-column[
-**da·ta noun plural but singular or plural in construction, often attributive \ˈdā-tə, ˈda- also ˈdä-\**
-1. factual information (as measurements or statistics) used as a basis for reasoning, discussion, or calculation
-2.  information output by a sensing device or organ that includes both useful and irrelevant or redundant information and must be processed to be meaningful
-3.  information in numerical form 
-that can be digitally transmitted or processed
+**Complies regression tables containg results from one or more estimation commands for use in:**
+* LATEX documents,
+* spreadsheets
+* word processor programs
 
->Merriam-Webster (http://www.merriam-webster.com/dictionary/data) 
+**Desires to provide a generic program to build a table from several sets of regressions.**
 ]
 ---
 
 
 .left-column[
-## Data can be
+## Design decisions
 ] 
 .right-column[
-* **Observational**: Captured in real-time, typically outside the lab
-  * Examples: Sensor readings, survey results, images, audio, video
-* **Experimental**: Typically generated in the lab or under controlled conditions
-  * Examples: test results
-* **Simulation**: Machine generated from test models
-  * Examples: climate models, economic models
-* **Derived /Compiled**: Generated from existing datasets
-  * Examples: text as data (data mining), compiled database, 3D models
+* Package author (Ben Jann) wanted to provide a **clean desk** for users
+* Users will need to build up their table
+* *estout* was desicnged to make a plain, unformatted table containing only point estimates by default
+
 ]
 ---
 
 .left-column[
-## Data can be
+## estout limitations
 ] 
 .right-column[
-* **Text**: field or laboratory notes, survey responses
-  * Numeric: tables, counts, measurements
-* **Audiovisual**: images, sound recordings, video
-  * Models, computer code, geospatial data
-* **Discipline-specific**: FITS in astronomy, CIF in chemistry
-* **Instrument-specific**: equipment outputs
+* not usually suitable for Stata's results window (uses tab character to separate table columns)
+* syntax not intuitive and user friendly (nested options, hard to remeber the copious options)
+* lots of typing required to compile a simple table (can use default files)
+* estout an expressive and complex tool, but might require a learning curve and be ornery to work with
+* easier wrapper to estout is **esttab** (we'll spend our time here today)
+* just remember if you need to do more complex stuff you might need to delve into estout
 ]
 ---
 .left-column[
-## Microdata 
+## storing estimates  
 ]
 .right-column[
-* Data directly observed or collected from a specific unit of observation. 
-* Contain individual cases, usually individual people, or in the case of Census data, individuals & households   
-* Examples:
-  * Census: the unit of observation is probably an individual, a household or a family.
-  * Survey or poll: the responses of a single respondent
-![ACS Form](ACS-form.jpg)
+* stata provides **estimate store** to store estimate sets 
+* as part of estout package, Jann provides **eststo** -- a wrapper to the native **estimate store**
+* **estimate store** requires a name for using, **eststo** will create a name for you: est1, est2
 ]
 ---
 .left-column[
-## Aggregate or Summary Data
+## Let's begin with **eststo**
 ]
 .right-column[
-* Is higher-level data that have been compiled from smaller units of data. 
-  * Examples: inflation rate, consumer price index, demographic data for city or state  
 
-![Right-aligned image](data-table.png)
+**eststo [name] [, options] [: estimation command]**
 ]
 ---
 .left-column[
