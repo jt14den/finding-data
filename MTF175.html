@@ -188,69 +188,58 @@ layout: false
 ]
 ---
 .left-column[
-##Use eststo
+##Use `eststo`
 ]
 .right-column[
 Create a regression from `auto` in Stata using both styles (after the command and as a prefix). Also, try naming the stored
-estimates and using tha way. After each eststo, use estout to print the table. (5min)
+estimates and using tha way. After each `eststo`, use `estout` to print the table. Clear out eststo after each sequence(5min)
 
 ```stata
 . sysuse auto
-. YOUR eststo cmd
+. YOUR eststo CMDS
 . estout, style(fixed)
+. eststo clear
 ```
+
 ]
 ---
 .left-column[
-## Data Repositories 
+## esttab 
 ]
 .right-column[
-* A data repository is a collection of datasets that have been deposited for storage and findability.
-* They are often discipline specific and/or affiliated with a research institution
-
-Examples
-* ICPSR
-* Harvard Dataverse Network
-* UC San Diego Digital Collections
+* wrapper for estout 
+* simplier syntax 
+* tables look good in the Stata window
+* adds support for word rich-text format (RTF)
 ]
 ---
 .left-column[
-## Recap
+## Basic syntax
 ]
 .right-column[
-* Data are raw ingredients from which statistics are created. 
-* Statistical analysis can be performed on data to show relationships among the variables collected. 
-* Through secondary data analysis, many different researchers can re-use the same data set for different purposes.
+
+**esttab [ namelist ] [ using filename ] [ , options estout_options ]**
+
+* *namelist*  - list of names of stored estimates sets (if omitted esttab will use active est)
+* can use \* as namelist to tabules all stored estimations sets 
+
 ]
----
-
-name: inverse
-layout: true
-class: center, middle, inverse
-
-## Finding Datasets
-
 ---
 layout: false
 
-.left-column[
-## Who would collect the data? 
+.left-column[ 
+
 ]
 .right-column[
-1. Could it have been collected by a government agency? 
-2. A nonprofit or nongovernmental organization?
-3. A private business or industry group?
-4. Academic researchers?
+
 ]
 
 ---
 .left-column[
-## Publications
+
 ]
 .right-column[
-* Look for publications that use the kind of data you’re looking for and that cite the dataset
-* In other words, is the data you want mentioned in scholarly articles or government reports or some other source?
-  * ICPSR Publications Search - Database of publications that use ICPSR data. 
+
 ]
 
 ---
