@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MTF 175 - Stata ESTOUT</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+         body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Table outputs in Stata
+
+---
+layout: false
+.left-column[
+## estout
+
+]
+.right-column[
+**Complies regression tables containg results from one or more estimation commands for use in:**
+* LATEX documents,
+* spreadsheets
+* word processor programs
+
+**Desire is to provide a generic program to build a table from several sets of regressions.**
+]
+---
+
+
+.left-column[
+## Design decisions
+] 
+.right-column[
+* Package author (Ben Jann) wanted to provide a **clean desk** for users
+* Users will need to build up their table
+* `estout` was desinged to make a plain, unformatted table containing only point estimates by default
+
+]
+---
+
+.left-column[
+## `estout` limitations
+] 
+.right-column[
+* not usually suitable for Stata's results window (uses tab character to separate table columns)
+* syntax not intuitive or user friendly (nested options, hard to remeber the copious options)
+* lots of typing required to compile a simple table (can use default files)
+* estout an expressive and complex tool, but might require a learning curve and be ornery to work with
+* easier wrapper to `estout` is `esttab` (we'll spend our time here today)
+* just remember if you need to do more complex stuff you might need to delve into `estout`
+]
+---
+.left-column[
+## storing estimates  
+]
+.right-column[
+* stata provides **estimate store** to store estimate sets 
+* as part of estout package, Jann provides **eststo** -- a wrapper to the native **estimate store**
+* **estimate store** requires a name for using, **eststo** will create a name for you: est1, est2
+]
+---
+.left-column[
+## Let's begin with `eststo`
+]
+.right-column[
+
+**eststo [name] [, options] [: estimation command]**
+]
+---
+.left-column[
+##Use `eststo`
+]
+.right-column[
+Create a regression from `auto` in Stata using both styles (after the command and as a prefix). Also, try naming the stored
+estimates and using tha way. After each `eststo`, use `estout` to print the table. Clear out eststo after each sequence(5min)
+
+```stata
+. sysuse auto
+. YOUR eststo CMDS
+. estout, style(fixed)
+. eststo clear
+```
+
+]
+---
+.left-column[
+## `esttab` 
+]
+.right-column[
+* wrapper for `estout` 
+* simplier syntax 
+* tables look good in the Stata window
+* adds support for word rich-text format (RTF)
+]
+---
+.left-column[
+## Basic syntax
+]
+.right-column[
+
+**esttab [ namelist ] [ using filename ] [ , options estout_options ]**
+
+* *namelist*  - list of names of stored estimates sets (if omitted esttab will use active est)
+* can use \* as namelist to tabules all stored estimations sets 
+* specifying `using` causes the regression table to be written to a file on disk 
+]
+---
+layout: false
+
+.left-column[ 
+## Basic workflow
+]
+.right-column[
+
+1. store serveral models with eststo
+2. apply `esttab` to these stored estimate sets and compose the table
+]
+
+---
+.left-column[
+Stata
+]
+.right-column[
+Code. 
+]
+---
+.left-column[
+## Use `esttab`  
+]
+.right-column[
+## Run and store two regressions on `auto` data. Use the `esttab` alone and observe the output. Now try `esttab, se ar2 nostar`.
+##Finally, show a table with the p-values (p) and confidence intervals (ci) while suppressing the t-statistic (not). 
+]
+---
+.left-column[
+## Layout, labels, and titles  
+]
+.right-column[
+* there are many options for changing the table's design
+* we can add labels, titles, or notes
+]
+
+---
+.left-column[
+## Examples
+]
+.right-column[
+* `wide` option arrranges point est. with any other stored parameter
+* `plain` option produces a minimally formatted table with all display formats set to Stata's `%9.0g`
+* `compress` reduces horizontal spacing to fit more models on the screen
+* `label` option causes variable labels to be used 
+* `mtitles` specifies that model titles be printed in the header 
+* let's use some of these options
+]
+
+---
+.left-column[
+## Your turn
+]
+.right-column[
+## Reuse your stored models (or create new ones) and add various options (wide, plain and compress).  
+## Add a title, mtitles and tell stata to use the var labels. 
+]
+---
+.left-column[
+## Numerical formats
+]
+.right-column[
+* sensible defaults - e.g. *t-statistics* are printed using 2 decimals
+* se an adaptive display format isused where the number of displayed decimal places depends on the scale of the statistic
+* change the format applied to a certain stats by adding display format
+* e.g. let's display p-values and the R-squared with 4 decimal places and point estimates with the `%9.0g` format
+]
+---
+.left-column[
+## Num. formats
+]
+.right-column[
+* Available formats are Stata's display formats, such as `%9.0g` or `%8.2f` (see [d] Format) <http://www.stata.com/help.cgi?format></http:>
+* You can request a fixed format by specifying an integer indicating the desired number of decimal points 
+* You may also specify adaptive format
+]
+---
+.left-column[
+## Document formats
+]
+.right-column[
+### Output format options let us switch between diff. document formats. Available formats include: 
+* `smcl` - stata's native markup format
+* `fixed` to produce a fixd-format ASCII table
+* `tab` to produce a tab-delimited ASCII table
+* `csv` to produce a csv-format table for use with Excel
+* `scsv` to procude a csv table using a semicolon (good for non-english version of xls)
+* `rtf` to produce RTF for use in word processors (Word)
+* `html` to make a HTML-formatted table 
+* `tex` for LATEX
+]
+---
+.left-column[
+## Let's make some files!
+]
+.right-column[
+Stata. 
+]
+---
+.left-column[
+Now your turn
+]
+.right-column[
+**Put together all we have learned today.  Clear out your eststo and create more estimates, store them. Build up a table and add/remove
+estimates, title, mtitles, formatting, layout options and then save it to multiple files. Open and inspect the files and then make 
+changes.** 
+]
+---
+.left-column[
+But what about summary stats?
+]
+.right-column[
+* estout has a command for that! `estpost`
+* Syntax: **estpost command [ arguments ] [, options ]**
+
+]
+---
+.left-column[
+`estpost`]
+.right-column[
+* `esttab` and `estout` tabulate e()-returns of a command
+* `estpost` makes results from some non-`e-class` commands availble for tabulation
+* check out this list of supported commands: <http://repec.org/bocode/e/estout/hlp_estpost.html#commands>
+  * summarize, tabstat, ttest, tabulate, corr 
+* let's use in stata
+]
+
+---
+.left-column[
+##Contact ]
+.right-column[
+
+Contact me: Tim Dennis <timdennis@ucsd.edu>
+]
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+    <script src="remark.language.js"></script>
+     <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+  </body>
+</html>
