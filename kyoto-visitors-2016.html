@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finding Data - UPS 125</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+         body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+## Kyoto University delegates on Monday, October 24, 2016
+
+Tim Dennis <http://libraries.ucsd.edu/contacts/profiles/timdennis.html>  
+Data Services Librarian  
+
+Reid Otsuji  
+Data Curation Specialist 
+
+---
+
+Motivating Quotes: 
+
+>Computing is now an integral part of every aspect of science, but most scientists are never taught how to build, use, validate, and share software well. 
+>>Software Carpentry <http://software-carpentry.org/>
+
+>Data is the central currency of science, but the nature of scientific data has changed dramatically with the rapid pace of technology. This change has led to the development of a wide variety of data formats, dataset sizes, data complexity, data use cases, and data sharing practices. 
+>>Hart EM, Barmby P, LeBauer D, Michonneau F, Mount S, et al. (2016) Ten Simple Rules for Digital Data Storage. PLoS Comput Biol 12(10): e1005097. doi: [10.1371/journal.pcbi.1005097](http://dx.doi.org/10.1371/journal.pcbi.1005097)
+
+---
+
+* How do we respond as libraries and librarians? 
+* The fact that research is more and more computationally enabled -- some are claiming that computational thinking is integral to solving problems and understanding human behavior
+* And knowing how to create software and use/manage research data are foundational skills set for being able to create knowledge. 
+* We are going to share what we have done at UCSD in the past year to support researchers facing this reality.
+
+---
+
+## At UCSD This is Borne Out by emerging "Data Science" topics in the Curriculum
+
+In the past 5 years we’ve witnessed the emergence of data science as a field of study as programs and in the larger curriculum:
+
+* Jacobs Engineering MS in DS (fall 2014)
+* MBA in Analytics program starting in fall quarter 2016
+* Data science student society - self-organized undergrad group 
+* Courses on “big data’ in our global policy school
+* Focus on computational sociology for Sociology Grads 
+* Undergrad major in Data Science also in the works as part of CogSci and Jacobs Engineering 
+* Bioinformatics Program, Med Informatics 
+* Other departments with interests in genomics that cuts across the biological sciences 
+
+---
+
+## Novel Research Environments 
+
+* Driving this study in Data Science is the need to deal with the huge amounts of data either acquired via new sources:  (sensor/social media) or generated by analysis.  
+* Researchers also need technology and storage to deal, process and analyze the data. 
+* Note data for many researched is also becoming more heterogeneous -- so facility with data manipulation is a core skill. 
+* Working in or building data pipelines also an emerging need. 
+
+---
+
+## DATA SOURCES
+
+* Data are becoming both high dimensional and volume
+* Public web is external
+* Social media data 
+* machine log data through your Web analytics
+* Sensor data - from cell phones, etc. high volume 
+* Mention open data movement 
+
+---
+
+##TECHNIQUES 
+
+* Researchers often are now required to learn how to deal with ‘big data’
+* Use data mining and text mining techniques - how to prepare text for analysis, etc.
+* Social networking - drawing inference from interconnected data - grouping, clustoring, etc.
+* ML algorithms to draw out knowledge form high diminsional/high vol. Data 
+* Focus on RR to promote transparency in science and replicate findings 
+
+---
+
+## New Research Depends on Basic CS Skills
+
+* Students need software and data skills before fully engaging in novel research with novel data sources.
+* Entry level researchers now understand they need to do things like text & data mining or machine learning, but typically haven’t had training in coding or working with lots of heterogeneous and untidy data
+* They have to learn R and working with data/ inferential statistics before they can do regression and then practical ML
+* We could start with python as the base language (maybe that is preferred in their dept. And higher order tools) and it still would hold 
+* The take away for us is that to engage in higher order analysis student will need to a) learn to code and b) acquire, work and analyze data in a disciplined best practice way
+* This motivated us to target these ‘entry-level’ skills in our workshops
+
+---
+
+## How we are responding at UC San Diego
+
+1. Offering data workshops
+2. Partnering with the Software Carpentry Foundation
+3. Building up consulting spaces with appropriate computing and staff with specialized skills
+5. Engaging with researchers, partnering with campus stakeholders, and building data communities
+
+---
+
+## 1. Data Workshops
+
+* Cover computational Basics
+* Focused on providing high-impact novice lessons for the following topics:
+  * Learing to code - software development best practices
+  * Working with data (data cleaning) and data management best practices
+  * Exploratory data analysis in some domain space 
+* Where possible, we used Software Carpentry/Data Carpentry as a primary resource for lessons materials
+* These are high quality lesson materials that are cloud sourced by 1000s of qualified instructors and freely reusable under CC BY 4.0
+
+---
+
+## 2. Partnering with Software Carpentry
+
+* We realized we need to have a larger pool of qualified instructors on campus to teach
+* We needed a way to develop our own skills as instuctors as well
+* We wanted to be part of a community that provided high quality instructional materials
+* So, we affiliated as a Silver Partner with the Software Capentry 
+* Earlier in 2016 3 Library Staff became certified software carpentry instructors
+* As part of our partnership we have a cohort of 6 instructors going thru SWC instructor training in December - these instructors come from the Library, SIO, SDSC, Political Science
+* Our model is to build stakeholdership on campus, e.g. our School of Global Policy and Strategy has given us $5K for next year's partnership
+* SWC instruction requires core pedagogical concepts and evidence based teaching practices.
+
+---
+
+### Workshops We've Offered 
+
+### One Shot Workshops and Boot Camps
+
+* Once our goals were in place we began scheduling a series of workshops for R and Python. 
+* We hope to develop a core set of one-shot workshops in R & Python
+
+### Disciplined Based Data Instruction 
+
+**School of Global Policy and Strategy**: 
+* Winter 2016, 9 week skills course series in R, Python, SQL, and data management 101
+* Total enrollment: 122 GPS masters students
+* We gave out 93 certificates of proficiency
+
+In this example the library data services programs have started to work with campus departments and subject experts to provide more domain-specific training covering the full lifecycle of data-driven research. 
+
+**R for Genomics**:
+* Teamed with bioinformatics librarians to teach a R 3 course series 
+* Courses included working with, managing and visualizing genomics data in R
+* Total enrollment: 90 participants from various departments (SIO, Bioinformatics, Biology, Salk, Molecular Biology)
+
+**Python for Economics Department**
+* 3 week Python series
+* 20 Ph.D. candidates
+* Courses included an introduction to Python, working with data in Python and working with web data in code
+
+---
+
+#### Carpentry Workshops
+
+* Typically are offered as 2-day bootcamp style workshops
+* Since 10/2015 we've offerec 3 2-day SWC workshops 
+  * Once we have more instructors on campus and in departments, we want to increase the frequency of these workshops
+  * Presents a challenge for us organizationally 
+* Offered the first Library Carpentry workshop in the USA
+* Technologies taught included using open lessons for Python, R, UNIX Shell, Git, OpenRefine
+
+---
+
+## 3. Consulting Service & Space  
+
+* Data Services including computing and consulting has been a part of the UCSD Libraries since 1985
+* In the 2000s focused on GIS -- providing access to ArcGIS and specialists
+* Currently finishing a refresh of the service to align more with the emergent data science skills and importance of working with heterogeneous data 
+* We've found that after teaching workshops, researchers will hear about you and having an easy way to work with you is important
+* We are explicitly designed the lab to support data intensive work in a studio model: 
+    - support data users as creators, learners, and collaborators
+    - provide staff with specialized skills in data & GIS
+    - support mobile computing and provide higher end computing 
+    - provide exertise on software development skills (best practices)
+
+---
+
+### Consulting includes: 
+
+* Data Management
+* Software development
+* Metadata consulting
+* Working with geospatial data
+* Help identify, locate and acquire data in all formats
+* Support for software tools
+* Assist with cleaning data and preparing data for analysis
+
+---
+
+## 4. Increased engagement with researchers and their research
+
+* With ressearch IT, initiating [The Hacker Within](http://www.thehackerwithin.org/) in Winter 2017
+* What is [The Hacker Within](http://www.thehackerwithin.org/)
+    * gatherings for reseachers to share skills and best practices for scientific computation.
+    * open sessions with peers at all levels of experience
+    * sharing topics useful or related to scientific computing
+* Format of event
+* Main topic presentations - workshops, demonstration, presentations
+* Lightning talks
+* Topic Examples:
+  * Discussing computational problems with a project
+  * Useful features or tips-and-tricks of a programming language used in a project
+  * Demonstrating and discussing a project or technology
+  * Python, Machine Learning, RStudio, Bash, Visualizations, HPC, Git
+* Why we are planning to establish a THW chapter at UC San Diego?
+* Opportunities for partnering with campus entities (research computing, etc.)
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+    <script src="remark.language.js"></script>
+     <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+  </body>
+</html>
